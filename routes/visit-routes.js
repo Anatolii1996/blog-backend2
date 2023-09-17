@@ -1,10 +1,10 @@
 const express = require('express');
-const {getVisits } = require("../controllers/visit-controller");
+const {getVisits, getCurrentIp } = require("../controllers/visit-controller");
 
 
 const router = express.Router();
 
-
+router.get("/ip", getCurrentIp)
 router.get("/visits", getVisits);
 
 

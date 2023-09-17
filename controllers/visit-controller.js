@@ -15,4 +15,11 @@ const getVisits = (req, res) => {
         .catch((err) => handleError(res, err));
 };
 
-module.exports = { getVisits };
+const getCurrentIp=(req, res)=>{
+    const currentIp=req.ip||req.headers['x-forwarded-for'];
+    res
+    .status(200)
+    .json({ipAddress: currentIp})
+}
+
+module.exports = { getVisits, getCurrentIp };
