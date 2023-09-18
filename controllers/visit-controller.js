@@ -7,7 +7,7 @@ const handleError = (res, error) => {
 const getVisits = (req, res) => {
 
     Visit
-        .find()
+        .distinct("ipAddress")
         .then((visits) => {
             res.status(200)
                 .json(visits)
@@ -15,11 +15,25 @@ const getVisits = (req, res) => {
         .catch((err) => handleError(res, err));
 };
 
-const getCurrentIp=(req, res)=>{
-    const currentIp=req.ip||req.headers['x-forwarded-for'];
+const getCurrentIp = (req, res) => {
+    const currentIp = req.ip || req.headers['x-forwarded-for'];
     res
-    .status(200)
-    .json({ipAddress: currentIp})
+        .status(200)
+        .json({ ipAddress: currentIp })
+        .catch((err) => handleError(res, err));
+};
+
+const addVisit = (req, res) => {
+    const visit = new Visit(req.body);
+    visit
+        .save()
+        .then((result) => {
+            res
+                .status(201)
+                .json(result)
+        })
+        .catch((err) => handleError(res, err));
+    
 }
 
-module.exports = { getVisits, getCurrentIp };
+module.exports = { getVisits, getCurrentIp, addVisit };
