@@ -20,7 +20,6 @@ const getCurrentIp = (req, res) => {
     res
         .status(200)
         .json({ ipAddress: currentIp })
-        .catch((err) => handleError(res, err));
 };
 
 const addVisit = (req, res) => {
