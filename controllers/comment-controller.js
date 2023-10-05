@@ -33,4 +33,15 @@ const addComment = (req, res) => {
 
 }
 
-module.exports = { addComment };
+const getComments = (req, res) => { 
+    Comment
+    .find()
+    .then((comments)=>{
+        res
+        .status(200)
+        .json(comments)
+    })
+    .catch((err) => handleError(res, err));
+ }
+
+module.exports = { addComment, getComments };
