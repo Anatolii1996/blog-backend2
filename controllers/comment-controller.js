@@ -28,6 +28,7 @@ const addComment = (req, res) => {
 const getComments = (req, res) => { 
     Comment
     .find()
+    .sort({ date: -1 })
     .then((comments)=>{
         res
         .status(200)
