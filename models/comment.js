@@ -4,6 +4,7 @@ const Scheme = mongoose.Schema;
 const commentSchema = new Scheme({
     ipAddress: String,
     date: String,
+    creatingTime: String,
     name: {
         type: String,
         required: true

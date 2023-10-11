@@ -1,5 +1,5 @@
 const Comment = require("../models/comment");
-const moment = require('moment'); 
+const moment = require('moment');
 
 const handleError = (res, error) => {
     res.status(500).json({ error });
@@ -11,7 +11,8 @@ const addComment = (req, res) => {
         name: req.body.name,
         surname: req.body.surname,
         comment: req.body.comment,
-        date: moment().format("DD.MM.YYYY HH:mm") ,
+        date: moment().format("DD.MM.YYYY HH:mm"),
+        creatingTime: new Date(),
         ipAddress: req.ip || req.headers['x-forwarded-for']
     }
     const comment = new Comment(newRecord);
@@ -25,16 +26,16 @@ const addComment = (req, res) => {
 
 }
 
-const getComments = (req, res) => { 
+const getComments = (req, res) => {
     Comment
-    .find()
-    .sort({ date: -1 })
-    .then((comments)=>{
-        res
-        .status(200)
-        .json(comments)
-    })
-    .catch((err) => handleError(res, err));
- }
+        .find()
+        .sort({ creatingTime: -1 })
+        .then((comments) => {
+            res
+                .status(200)
+                .json(comments)
+        })
+        .catch((err) => handleError(res, err));
+}
 
 module.exports = { addComment, getComments };
