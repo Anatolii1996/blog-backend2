@@ -1,12 +1,8 @@
 const Comment = require("../models/comment");
+const { handleError } = require("../helper")
 const moment = require('moment');
 
-const handleError = (res, error) => {
-    res.status(500).json({ error });
-};
-
 const addComment = (req, res) => {
-
     const newRecord = {
         name: req.body.name,
         surname: req.body.surname,

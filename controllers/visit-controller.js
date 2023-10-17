@@ -1,11 +1,7 @@
 const Visit = require("../models/visit");
-
-const handleError = (res, error) => {
-    res.status(500).json({ error });
-};
+const { handleError } = require("../helper")
 
 const getVisits = (req, res) => {
-
     Visit
         .distinct("ipAddress")
         .then((visits) => {
@@ -32,7 +28,7 @@ const addVisit = (req, res) => {
                 .json(result)
         })
         .catch((err) => handleError(res, err));
-    
+
 }
 
 module.exports = { getVisits, getCurrentIp, addVisit };
