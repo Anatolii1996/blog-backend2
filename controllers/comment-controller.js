@@ -8,7 +8,7 @@ const addComment = (req, res) => {
         surname: req.body.surname,
         comment: req.body.comment,
         date: moment().format("DD.MM.YYYY HH:mm"),
-        creatingTime: new Date(),
+        creatingTime: moment().format("DD.MM.YYYY HH:mm:ss"),
         ipAddress: req.ip || req.headers['x-forwarded-for']
     }
     const comment = new Comment(newRecord);
@@ -25,7 +25,6 @@ const addComment = (req, res) => {
 const getComments = (req, res) => {
     Comment
         .find()
-        .sort({ date: -1 })
         .sort({ creatingTime: -1 })
         .then((comments) => {
             res
