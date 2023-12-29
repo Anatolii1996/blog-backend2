@@ -16,7 +16,8 @@ const commentSchema = new Scheme({
     comment: {
         type: String,
         required: true
-    }
+    },
+    _id: String
 });
 
 const Comment = mongoose.model("Comment", commentSchema);

@@ -1,5 +1,6 @@
 const Comment = require("../models/comment");
-const { handleError } = require("../helper")
+const { handleError } = require("../helper");
+const { ObjectId } = require("mongodb")
 const moment = require('moment');
 
 const addComment = (req, res) => {
@@ -9,7 +10,8 @@ const addComment = (req, res) => {
         comment: req.body.comment,
         date: moment().format("DD.MM.YYYY HH:mm"),
         creatingTime: moment().format("DD.MM.YYYY HH:mm:ss"),
-        ipAddress: req.ip || req.headers['x-forwarded-for']
+        ipAddress: req.ip || req.headers['x-forwarded-for'],
+        _id: new ObjectId().toString()
     }
     const comment = new Comment(newRecord);
     comment
