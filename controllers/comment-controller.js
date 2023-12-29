@@ -35,5 +35,17 @@ const getComments = (req, res) => {
         })
         .catch((err) => handleError(res, err));
 }
+const deleteComment = (req, res) => {
+    // console.log(req.body.ipAddress)
+    Comment
+    .findOneAndDelete({ _id: req.body.ipAddress })
+    .then((comment) => {
+        if (!comment) {
+            return res.status(404).json({ message: 'Комментарий не найден' });
+        }
+        res.status(200).json({ message: 'Комментарий успешно удален' });
+    })
+    .catch((err) => handleError(res, err));
+}
 
-module.exports = { addComment, getComments };
+module.exports = { addComment, getComments, deleteComment };
