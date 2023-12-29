@@ -18,8 +18,8 @@ const toBlockUser = (req, res) => {
         name: req.body.name,
         surname: req.body.surname,
         comment: req.body.comment,
-        date: moment().format("DD.MM.YYYY HH:mm"),
-        ipAddress: req.ip || req.headers['x-forwarded-for']
+        date: req.body.date,
+        ipAddress: req.body.ipAddress,
     }
     const blockedUser = new BlockedUser(newRecord);
     blockedUser
