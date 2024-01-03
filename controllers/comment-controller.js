@@ -3,7 +3,7 @@ const { handleError } = require("../helper");
 const { ObjectId } = require("mongodb")
 const moment = require('moment');
 
-const addComment = (req, res) => {
+const addComment = async(req, res) => {
     const newRecord = {
         name: req.body.name,
         surname: req.body.surname,
@@ -14,7 +14,7 @@ const addComment = (req, res) => {
         _id: new ObjectId().toString()
     }
     const comment = new Comment(newRecord);
-    comment
+   await comment
         .save()
         .then(() => {
             // Отправляем пустой ответ с кодом 201 (Created)
@@ -24,8 +24,8 @@ const addComment = (req, res) => {
 
 }
 
-const getComments = (req, res) => {
-    Comment
+const getComments =async (req, res) => {
+   await Comment
         .find()
         .sort({ creatingTime: -1 })
         .then((comments) => {
@@ -35,9 +35,9 @@ const getComments = (req, res) => {
         })
         .catch((err) => handleError(res, err));
 }
-const deleteComment = (req, res) => {
+const deleteComment =async (req, res) => {
     // console.log(req.body.ipAddress)
-    Comment
+   await Comment
     .findOneAndDelete({ _id: req.body.ipAddress })
     .then((comment) => {
         if (!comment) {

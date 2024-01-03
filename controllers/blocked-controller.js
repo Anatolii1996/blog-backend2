@@ -1,9 +1,9 @@
 const BlockedUser = require("../models/blockedUser");
 const { handleError } = require("../helper")
 
-const getBlockedUsers = (req, res) => {
+const getBlockedUsers = async (req, res) => {
     // console.log("getBlockedUsers started")
-    BlockedUser
+    await BlockedUser
         .distinct("ipAddress")
         .then((visits) => {
             res.status(200)
@@ -12,7 +12,7 @@ const getBlockedUsers = (req, res) => {
         .catch((err) => handleError(res, err));
 };
 
-const toBlockUser = (req, res) => {
+const toBlockUser = async (req, res) => {
     // console.log("getBlockedUsers started")
     const newRecord = {
         name: req.body.name,
@@ -22,7 +22,7 @@ const toBlockUser = (req, res) => {
         ipAddress: req.body.ipAddress,
     }
     const blockedUser = new BlockedUser(newRecord);
-    blockedUser
+    await blockedUser
         .save()
         .then(() => {
             // Отправляем пустой ответ с кодом 201 (Created)
