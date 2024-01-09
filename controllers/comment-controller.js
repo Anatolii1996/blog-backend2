@@ -1,7 +1,6 @@
 const Comment = require("../models/comment");
 const { handleError } = require("../helper");
 const { ObjectId } = require("mongodb")
-const moment = require('moment');
 
 const addComment = async (req, res) => {
     const newRecord = {
@@ -27,7 +26,7 @@ const getComments = async (req, res) => {
         .find()
         .sort({ creatingTime: -1 })
         .then((comments) => {
-            console.log(comments)
+            // console.log(comments)
             res
                 .status(200)
                 .json(comments)
