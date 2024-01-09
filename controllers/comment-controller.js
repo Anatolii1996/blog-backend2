@@ -1,6 +1,5 @@
 const Comment = require("../models/comment");
 const { handleError } = require("../helper");
-const { ObjectId } = require("mongodb")
 
 const addComment = async (req, res) => {
     const newRecord = {
@@ -8,7 +7,6 @@ const addComment = async (req, res) => {
         surname: req.body.surname,
         comment: req.body.comment,
         ipAddress: req.ip || req.headers['x-forwarded-for'],
-        _id: new ObjectId().toString()
     }
     const comment = new Comment(newRecord);
     await comment

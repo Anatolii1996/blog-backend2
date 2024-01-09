@@ -1,13 +1,19 @@
 const mongoose = require("mongoose");
 const moment = require('moment');
+const { ObjectId } = require("mongodb")
 const Scheme = mongoose.Schema;
 
 const commentSchema = new Scheme({
+    _id: {
+        type: String,
+        required: true,
+        default: () => new ObjectId().toString()
+    },
     ipAddress: String,
     date: {
         type: String,
         required: true,
-        default:  moment().format("DD.MM.YYYY HH:mm")
+        default: moment().format("DD.MM.YYYY HH:mm")
     },
     creatingTime: {
         type: Date,
@@ -26,7 +32,6 @@ const commentSchema = new Scheme({
         type: String,
         required: true
     },
-    _id: String
 });
 
 const Comment = mongoose.model("Comment", commentSchema);
