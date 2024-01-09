@@ -8,8 +8,6 @@ const addComment = async (req, res) => {
         name: req.body.name,
         surname: req.body.surname,
         comment: req.body.comment,
-        date: moment().format("DD.MM.YYYY HH:mm"),
-        creatingTime: moment().format("DD.MM.YYYY HH:mm:ss"),
         ipAddress: req.ip || req.headers['x-forwarded-for'],
         _id: new ObjectId().toString()
     }
@@ -29,7 +27,7 @@ const getComments = async (req, res) => {
         .find()
         .sort({ creatingTime: -1 })
         .then((comments) => {
-            // console.log(comments)
+            console.log(comments)
             res
                 .status(200)
                 .json(comments)
