@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require("express");
+const serverless = require('serverless-http');
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -13,7 +14,7 @@ const app = express();
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
-app.use(visitRouter, commentRouter,blockedRouter)
+app.use('/', visitRouter, commentRouter,blockedRouter)
 
 mongoose
     .connect(process.env.URL)
@@ -26,4 +27,4 @@ app.listen(PORT, (err) => {
     err ? console.log(err) : console.log(`Listening port ${PORT}`);
 });
 
-
+module.exports.handler = serverless(app);
