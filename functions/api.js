@@ -3,9 +3,9 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const visitRouter = require("./routes/visit-routes");
-const commentRouter = require("./routes/comment-routes");
-const blockedRouter = require("./routes/blocked-routes");
+const visitRouter = require("../routes/visit-routes");
+const commentRouter = require("../routes/comment-routes");
+const blockedRouter = require("../routes/blocked-routes");
 
 const PORT = 3002;
 

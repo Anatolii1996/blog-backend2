@@ -18,9 +18,9 @@ const getCurrentIp = async (req, res) => {
         .json({ ipAddress: currentIp })
 };
 
-const addVisit =async (req, res) => {
+const addVisit = async (req, res) => {
     const visit = new Visit(req.body);
-   await visit
+    await visit
         .save()
         .then((result) => {
             res
