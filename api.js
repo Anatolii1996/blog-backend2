@@ -16,7 +16,7 @@ app.use(cors());
 app.use(visitRouter, commentRouter,blockedRouter)
 
 mongoose
-    .connect(process.env.URL)
+    .connect(DB_URL)
     .then(() => console.log('Connected to MongoDB'))
     .catch((err) => console.log(`DB connection error: ${err}`));
 
