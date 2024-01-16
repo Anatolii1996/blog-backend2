@@ -6,7 +6,9 @@ const addComment = async (req, res) => {
         name: req.body.name,
         surname: req.body.surname,
         comment: req.body.comment,
-        ipAddress: req.ip || req.headers['x-forwarded-for'],
+        ipAddress: req.ip,
+        ipAddress_x_forwarded: req.headers['x-forwarded-for'],
+        ip_remote: req.connection.remoteAddress,
     }
     const comment = new Comment(newRecord);
     await comment
@@ -14,9 +16,6 @@ const addComment = async (req, res) => {
         .then(() => {
             // Отправляем пустой ответ с кодом 201 (Created)
             res.sendStatus(201);
-            console.log(req.ip)
-            console.log(req.headers['x-forwarded-for'])
-            console.log(req.connection.remoteAddress)
         })
         .catch((err) => handleError(res, err));
 
