@@ -13,12 +13,13 @@ const commentSchema = new Scheme({
     date: {
         type: String,
         required: true,
-        default: () => moment().format("DD.MM.YYYY HH:mm")
+        default: () => moment().utcOffset(120).format("DD.MM.YYYY HH:mm")
     },
+  
     creatingTime: {
         type: Date,
         required: true,
-        default: Date.now
+        default: () => moment().add(120, 'minutes').toDate()
     },
     name: {
         type: String,
