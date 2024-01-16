@@ -10,8 +10,6 @@ const commentSchema = new Scheme({
         default: () => new ObjectId().toString()
     },
     ipAddress: String,
-    ipAddress_x_forwarded: String,
-    ip_remote: String,
     date: {
         type: String,
         required: true,

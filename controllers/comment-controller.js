@@ -6,9 +6,7 @@ const addComment = async (req, res) => {
         name: req.body.name,
         surname: req.body.surname,
         comment: req.body.comment,
-        ipAddress: req.ip,
-        ipAddress_x_forwarded: req.headers['x-forwarded-for'],
-        ip_remote: req.connection.remoteAddress,
+        ipAddress:req.headers['x-forwarded-for']|| req.ip,
     }
     const comment = new Comment(newRecord);
     await comment

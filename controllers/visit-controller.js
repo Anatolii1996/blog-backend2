@@ -12,15 +12,15 @@ const getVisits = async (req, res) => {
 };
 
 const getCurrentIp = async (req, res) => {
-    const currentIp = req.ip || req.headers['x-forwarded-for'];
+    const currentIp = req.headers['x-forwarded-for'] || req.ip;
     await res
         .status(200)
         .json({ ipAddress: currentIp })
 };
 
-const addVisit =async (req, res) => {
+const addVisit = async (req, res) => {
     const visit = new Visit(req.body);
-   await visit
+    await visit
         .save()
         .then((result) => {
             res
