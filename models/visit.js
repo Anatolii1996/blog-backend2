@@ -1,16 +1,18 @@
 const mongoose = require("mongoose");
-const Scheme = mongoose.Schema;
+const moment = require('moment');
+const Schema = mongoose.Schema;
 
-const visitSchema = new Scheme({
-    ipAddress: {
+const visitSchema = new Schema({
+    userId: {
         type: String,
         required: true
     },
     entryTime: {
-        type: String,
-        required: true
+        type: Date,
+        required: true,
+        default: () => moment().add(120, 'minutes').toDate()
     }
-    
+
 });
 
 const Visit = mongoose.model("Visit", visitSchema);

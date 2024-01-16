@@ -2,24 +2,19 @@ const Visit = require("../models/visit");
 const { handleError } = require("../helper")
 
 const getVisits = async (req, res) => {
-    await Visit
-        .distinct("ipAddress")
-        .then((visits) => {
-            res.status(200)
-                .json(visits)
-        })
-        .catch((err) => handleError(res, err));
-};
+    try {
+        const visitCount = await Visit.countDocuments();
+        res.status(200).json({ count: visitCount });
+    } catch (err) {
+        handleError(res, err);
+    }
+}
 
-const getCurrentIp = async (req, res) => {
-    const currentIp = req.headers['x-forwarded-for'] || req.ip;
-    await res
-        .status(200)
-        .json({ ipAddress: currentIp })
-};
+
 
 const addVisit = async (req, res) => {
     const visit = new Visit(req.body);
+    // console.log(visit)
     await visit
         .save()
         .then((result) => {
@@ -31,4 +26,4 @@ const addVisit = async (req, res) => {
 
 }
 
-module.exports = { getVisits, getCurrentIp, addVisit };
+module.exports = { getVisits, addVisit };
