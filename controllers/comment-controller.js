@@ -14,6 +14,9 @@ const addComment = async (req, res) => {
         .then(() => {
             // Отправляем пустой ответ с кодом 201 (Created)
             res.sendStatus(201);
+            console.log(req.ip)
+            console.log(req.headers['x-forwarded-for'])
+            console.log(req.connection.remoteAddress)
         })
         .catch((err) => handleError(res, err));
 
