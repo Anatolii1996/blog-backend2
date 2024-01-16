@@ -6,8 +6,12 @@ const addComment = async (req, res) => {
         name: req.body.name,
         surname: req.body.surname,
         comment: req.body.comment,
-        ipAddress:req.headers['x-forwarded-for']|| req.ip,
+       
     }
+    if (req.body.hasOwnProperty('isOwnerAuthor')) {
+        newRecord.isOwnerAuthor = req.body.isOwnerAuthor;
+    }
+
     const comment = new Comment(newRecord);
     await comment
         .save()

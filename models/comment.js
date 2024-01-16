@@ -9,7 +9,11 @@ const commentSchema = new Scheme({
         required: true,
         default: () => new ObjectId().toString()
     },
-    ipAddress: String,
+   isOwnerAuthor:{
+    type: Boolean,
+    default: false,
+    required: true,
+   },
     date: {
         type: String,
         required: true,
