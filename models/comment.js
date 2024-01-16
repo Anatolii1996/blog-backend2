@@ -13,7 +13,7 @@ const commentSchema = new Scheme({
     date: {
         type: String,
         required: true,
-        default: moment().format("DD.MM.YYYY HH:mm")
+        default: () => moment().format("DD.MM.YYYY HH:mm")
     },
     creatingTime: {
         type: Date,
