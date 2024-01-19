@@ -18,9 +18,11 @@ const addVisit = async (req, res) => {
     await visit
         .save()
         .then((result) => {
+            // console.log(result)
             res
                 .status(201)
                 .json(result)
+              
         })
         .catch((err) => handleError(res, err));
 

@@ -9,17 +9,18 @@ const commentSchema = new Scheme({
         required: true,
         default: () => new ObjectId().toString()
     },
-   isOwnerAuthor:{
-    type: Boolean,
-    default: false,
-    required: true,
-   },
+    userId: String,
+    isOwnerAuthor: {
+        type: Boolean,
+        default: false,
+        required: true,
+    },
     date: {
         type: String,
         required: true,
         default: () => moment().utcOffset(120).format("DD.MM.YYYY HH:mm")
     },
-  
+
     creatingTime: {
         type: Date,
         required: true,

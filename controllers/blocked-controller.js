@@ -4,7 +4,7 @@ const { handleError } = require("../helper")
 const getBlockedUsers = async (req, res) => {
     // console.log("getBlockedUsers started")
     await BlockedUser
-        .distinct("ipAddress")
+        .distinct("_id")
         .then((visits) => {
             res.status(200)
                 .json(visits)
@@ -15,11 +15,12 @@ const getBlockedUsers = async (req, res) => {
 const toBlockUser = async (req, res) => {
     // console.log("getBlockedUsers started")
     const newRecord = {
+        _id:req.body._id,
         name: req.body.name,
         surname: req.body.surname,
         comment: req.body.comment,
         date: req.body.date,
-        ipAddress: req.body.ipAddress,
+       
     }
     const blockedUser = new BlockedUser(newRecord);
     await blockedUser

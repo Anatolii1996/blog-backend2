@@ -2,7 +2,11 @@ const mongoose = require("mongoose");
 const Scheme = mongoose.Schema;
 
 const blockedSchema = new Scheme({
-    ipAddress: String,
+    _id: {
+        type: String,
+        required: true,
+       
+    },
     date: String,
    
     name: {

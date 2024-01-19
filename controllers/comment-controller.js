@@ -6,7 +6,7 @@ const addComment = async (req, res) => {
         name: req.body.name,
         surname: req.body.surname,
         comment: req.body.comment,
-       
+        userId: req.body.userId
     }
     if (req.body.hasOwnProperty('isOwnerAuthor')) {
         newRecord.isOwnerAuthor = req.body.isOwnerAuthor;
