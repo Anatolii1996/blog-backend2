@@ -15,7 +15,7 @@ const getBlockedUsers = async (req, res) => {
 const toBlockUser = async (req, res) => {
     // console.log("getBlockedUsers started")
     const newRecord = {
-        _id:req.body._id,
+        _id:req.body.userId,
         name: req.body.name,
         surname: req.body.surname,
         comment: req.body.comment,
