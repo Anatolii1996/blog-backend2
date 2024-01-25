@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const visitRouter = require("./routes/visit-routes");
 const commentRouter = require("./routes/comment-routes");
 const blockedRouter = require("./routes/blocked-routes");
+const recordRouter = require("./routes/record-routes");
 
 const PORT = 3002;
 
@@ -13,7 +14,7 @@ const app = express();
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
-app.use(visitRouter, commentRouter,blockedRouter)
+app.use(visitRouter, commentRouter,blockedRouter, recordRouter)
 
 mongoose
     .connect(process.env.URL)
