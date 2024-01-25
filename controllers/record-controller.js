@@ -7,7 +7,7 @@ const startAddandDelRecord = async (req, res) => {
             await addRecord();
             console.log("add record");
             removeUnlessedRecord()
-        }, 60000);
+        }, 840000);
 
         // const records = await Record.find();
         // if (records.length > 10) {
