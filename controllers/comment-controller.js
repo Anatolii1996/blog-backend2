@@ -38,7 +38,7 @@ const getComments = async (req, res) => {
 const deleteComment = async (req, res) => {
     // console.log(req.body.ipAddress)
     await Comment
-        .findOneAndDelete({ _id: req.body.ipAddress })
+        .findOneAndDelete({ _id: req.body._id })
         .then((comment) => {
             if (!comment) {
                 return res.status(404).json({ message: 'Комментарий не найден' });
